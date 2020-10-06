@@ -7,6 +7,7 @@ import {
 export abstract class Meta {
 	@PrimaryGeneratedColumn()
 	id: number;
+
 	@UpdateDateColumn('timestamptz')
 	updatedAt: string;
 
