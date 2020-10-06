@@ -7,13 +7,14 @@ import {
 	ManyToOne,
 	OneToOne,
 } from 'typeorm';
+import { Book } from './Book';
 import { Language } from './Language';
-import { Meta } from './Meta';
+import { Meta, MetaWithLangs } from './Shared';
 import { TranslationGroup } from './TranslationGroup';
 import { User } from './User';
 
 @Entity()
-export class Sheet extends Meta {
+export class Sheet extends MetaWithLangs {
 	@Column()
 	title: string;
 
@@ -29,15 +30,10 @@ export class Sheet extends Meta {
 	@ManyToOne(() => User, (user) => user.forkedSheets, { nullable: true })
 	forkedFrom: User;
 
-	@OneToOne(() => Language)
-	@JoinColumn()
-	from: Language;
-
-	@OneToOne(() => Language)
-	@JoinColumn()
-	to: Language;
-
 	@ManyToMany(() => TranslationGroup)
 	@JoinTable()
 	translationGroups: TranslationGroup[];
+
+	@ManyToMany(() => Book, book => book.sheets)
+	books: Book[]
 }
