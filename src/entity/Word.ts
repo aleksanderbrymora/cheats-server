@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Language } from './Language';
-import { Meta } from './Meta';
+import { Meta } from './Shared';
 import { TranslationGroup } from './TranslationGroup';
 
 @Entity()
