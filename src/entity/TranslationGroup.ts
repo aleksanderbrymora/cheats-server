@@ -1,4 +1,11 @@
-import { Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+	Entity,
+	JoinTable,
+	ManyToMany,
+	OneToMany,
+	PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Tag } from './Tag';
 import { Word } from './Word';
 
 @Entity()
@@ -8,4 +15,8 @@ export class TranslationGroup {
 
 	@OneToMany(() => Word, (word) => word.language)
 	words: Word[];
+
+	@ManyToMany(() => Tag, (tag) => tag.translationGroups)
+	@JoinTable()
+	tags: Tag[];
 }
