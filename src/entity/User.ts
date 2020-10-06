@@ -12,4 +12,7 @@ export class User extends Meta {
 
 	@OneToMany(() => Sheet, (sheet) => sheet.forkedFrom)
 	forkedSheets: Sheet[];
+
+	@Column()
+	password: string;
 }
